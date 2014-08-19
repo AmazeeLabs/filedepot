@@ -263,7 +263,7 @@ function filedepot_menu() {
     'access arguments' => array('access filedepot'),
     'type' => MENU_CALLBACK,
   );
-  
+
   return $items;
 }
 
@@ -489,7 +489,7 @@ function filedepot_theme() {
       'variables' => array(),
     ),
   );
-  
+
   // Now add the views related template files
   if (module_exists('views')) {
     $theme_hooks = array_merge($theme_hooks, filedepot_add_views_templates());
@@ -662,12 +662,16 @@ MSG;
  *
  *
  */
-function filedepot_main() {
+function filedepot_main($arg1 = NULL, $arg2 = NULL) {
   $cid       = 0;
   $filedepot = NULL; //filedepot_filedepot();
   $grpid     = 0;
-  $arg1      = arg(1);
-  $arg2      = arg(2);
+  if (is_null($arg1)) {
+    $arg1      = arg(1);
+  }
+  if (is_null($arg2)) {
+    $arg2      = arg(2);
+  }
 
 
   $libpaths = array();
@@ -1182,7 +1186,7 @@ function filedepot_download($node, $fid, $version, $mode = '') {
         ));
         return drupal_access_denied();
       }
-      
+
       $real_filepath = drupal_realpath($filepath);
       if (file_exists($real_filepath) AND !is_dir($real_filepath)) {
         if ($mode == 'moderator') {
@@ -1892,7 +1896,7 @@ function template_preprocess_filedepot_tagcloud(&$variables) {
     if (!empty($nexcloud->_activetags)) {
       $sql .= "AND a.tagid NOT in ({$nexcloud->_activetags}) ";
     }
-    
+
     $sql .= "GROUP BY a.tagid, b.tagword, a.metric ORDER BY a.tagid ASC, metric DESC";
     $query = db_query($sql);
     while ($A     = $query->fetchAssoc()) {
@@ -2109,7 +2113,7 @@ function filedepot_newfile_submit($form, &$form_state) {
   $folder_nid = db_query("SELECT nid FROM {filedepot_categories} WHERE cid=:cid", array(':cid' => $cid))->fetchField();
   $node  = node_load($folder_nid);
   $cid_perms = $filedepot->getPermissionObject($cid);
-  
+
   if ($cid_perms->canUpload() === FALSE) {
     drupal_set_message(t('Insufficient priviledges to upload to this folder'), 'error');
     return;
