@@ -134,25 +134,26 @@
             <input type="hidden" name="tags" value="">
             <table>
               <tr>
-                <td width="50%"><input type="text" size="20" name="query" id="searchquery" class="form-text" style="height:12px;padding:3px 3px 5px 3px;" value="<?php print $search_query ?>" onClick="this.value='';"></td>
-                <td width="50%" style="text-align:right;"><input type="button" id="searchbutton" value="<?php print t('Search') ?>"></td>
+                <!-- <td width="50%"><input type="text" size="20" name="query" id="searchquery" class="form-text" style="height:12px;padding:3px 3px 5px 3px;" value="<?php print $search_query ?>" onClick="this.value='';"></td> -->
+                <input type="hidden" size="20" name="query" id="searchquery" class="form-text" style="height:12px;padding:3px 3px 5px 3px;" value="" onClick="this.value='';">
+                <!-- <td width="50%" style="text-align:right;"><input type="button" id="searchbutton" value="<?php print t('Search') ?>"></td> -->
               </tr>
             </table>
           </form>
         </div>
-        <div class="tagsearchboxcontainer" style="width:10%;padding:5px;">
+        <!-- <div class="tagsearchboxcontainer" style="width:10%;padding:5px;">
           <div><a id="showsearchtags" href="#"><?php echo t('Tags'); ?></a></div>
-        </div>
+        </div> -->
       </div>
     </div>
-    <div class="tagsearchboxcontainer">
+    <!-- <div class="tagsearchboxcontainer">
       <div id="tagspanel" style="display:none;">
         <div class="hd"><?php print t('Search Tags'); ?></div>
         <div id="tagcloud" class="bd tagcloud">
           <?php print $tagcloud ?>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div id="filedepot_sidecol">
       <!-- Leftside Folder Navigation generated onload by page javascript -->

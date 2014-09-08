@@ -139,6 +139,7 @@ function showAlert(message,autoclose) {
 }
 
 function updateAjaxStatus(message) {
+  return;
   try {
     Dom.get('filedepot_ajaxStatus').innerHTML = '';
     if(message) {
@@ -2253,7 +2254,8 @@ function showAddCategoryPanel() {
  * @param oResults string JSON
  */
 function renderLeftNavigation(oResults) {
-
+// We do not need this for the moment.
+return;
   try {
     if (!Event.getListeners('folderoptions_link')) {   // Check first to see if listener already active
       Event.addListener("folderoptions_link","click",togglefolderoptions);
@@ -2371,6 +2373,8 @@ function renderFileListing(oResults) {
 }
 
 YAHOO.filedepot.showLeftNavigation = function() {
+// We do not need this for the moment.
+return;
   /* Generate Left Side Folder Navigation */
   var surl = ajax_post_handler_url + '/getleftnavigation';
   var navcallback = {

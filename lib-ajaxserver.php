@@ -104,13 +104,13 @@ function filedepotAjaxServer_generateLeftSideNavigation($data = '') {
   global $user;
   $filedepot = filedepot_filedepot();
   $display_recent_folders = variable_get('filedepot_show_recent_folders', 1);
-   
+
   if (empty($data)) {
     $data = array('retcode' => 200);
   }
 
   $approvals = filedepot_getSubmissionCnt();
-  
+
   $data['reports'] = array();
   $data['recentfolders'] = array();
   $data['topfolders'] = array();
@@ -234,11 +234,11 @@ function filedepotAjaxServer_generateLeftSideNavigation($data = '') {
   if (function_exists('filedepot_customLeftsideNavigation')) {
     $data = filedepot_customLeftsideNavigation($data);
   }
-  
+
   if ($display_recent_folders == 0) {
     $data['recentfolders'] = NULL;
   }
-  
+
   return $data;
 
 }
@@ -249,9 +249,9 @@ function filedepot_displayFolderListing($id = 0, $level = 0, $folderprefix = '',
   global $user;
 
   $filedepot = filedepot_filedepot();
-  
+
   $file_first_display = (variable_get(FILEDEPOT_VAR_DISPLAYORDER_FILESFIRST, 1) == 1) ? TRUE : FALSE;
-  
+
   $retval = '';
   if ($id > 0 AND !in_array($id, $filedepot->allowableViewFolders)) {
     watchdog('filedepot', 'No view access to category @id', array('id' => $id));
@@ -267,7 +267,7 @@ function filedepot_displayFolderListing($id = 0, $level = 0, $folderprefix = '',
   }
 
   $level++;
-  
+
   if ($file_first_display == TRUE) {
     if ($level == 1) {
       $retval .= nexdocsrv_generateFileListing($id, $level, $folderprefix);
@@ -306,25 +306,26 @@ function filedepot_displayFolderListing($id = 0, $level = 0, $folderprefix = '',
       else {
         $formatted_foldernumber = "{$folderprefix}.{$i}";
       }
-      
+
       $subfolder_count = db_query("SELECT count(cid) FROM {filedepot_categories} WHERE pid=:pid",
         array(':pid' => $A['cid']))->fetchField();
+      $tmpsubfolderlisting = '';
       if ($subfolder_count > 0) {
         // Show any sub-subfolders - calling this function again recursively
         $tmpsubfolderlisting = filedepot_displayFolderListing($A['cid'], $level, $formatted_foldernumber, $rowid);
       }
-      
+
       $tmpfilelisting = nexdocsrv_generateFileListing($A['cid'], $level, $formatted_foldernumber);
-      
+
       if ($file_first_display == TRUE) {
         $subfolderlisting .= $tmpfilelisting;
         $subfolderlisting .= $tmpsubfolderlisting;
       }
       else {
-        $subfolderlisting .= $tmpsubfolderlisting;        
+        $subfolderlisting .= $tmpsubfolderlisting;
         $subfolderlisting .= $tmpfilelisting;
       }
-      
+
       $retval .= theme('filedepot_folderlisting', array(
         'folderrec' => $A,
         'folderprefix' => $formatted_foldernumber,
@@ -340,13 +341,13 @@ function filedepot_displayFolderListing($id = 0, $level = 0, $folderprefix = '',
       }
     }
   }
-  
+
   if ($file_first_display == FALSE) {
     if ($level == 1) {
       $retval .= nexdocsrv_generateFileListing($id, $level - 1, $folderprefix);
     }
   }
-  
+
   return $retval;
 }
 
@@ -366,16 +367,16 @@ function nexdocsrv_generateFileListing($cid, $level = 1, $folderprefix = '') {
   $files = array();
   $limit_start = 0;
   $limit_end = FALSE;
-  
+
   $sql = filedepot_getFileListingSQL($cid, $limit_start, $limit_end);
-  
+
   if ($limit_end === FALSE) {
     $file_query = db_query($sql);
   }
   else {
     $file_query = db_query_range($sql, $limit_start, $limit_end);
   }
-  
+
   $output = '';
   $break = FALSE;
 
@@ -509,7 +510,7 @@ function filedepot_displayTagSearchListing($query) {
 function filedepot_getFileListingSQL($cid, &$out_limit_start, &$out_limit_end) {
   global $user;
   $filedepot = filedepot_filedepot();
-  
+
   $out_limit_start = 0;
   $display_orderby = variable_get('filedepot_override_folderorder', 0) ? 'file.title ASC, file.date DESC' : 'file.date DESC';
   $sql = '';
@@ -633,14 +634,14 @@ function filedepot_getFileListingSQL($cid, &$out_limit_start, &$out_limit_end) {
         $folder_filelimit = $filedepot->recordCountPass2 + 1;
         $limit = $folder_filelimit;
         $out_limit_start = $filedepot->recordCountPass1;
-        
-        
+
+
       }
       else {
 
         $limit = $filedepot->recordCountPass1;
         $out_limit_start = 0;
-        
+
       }
     }
 
