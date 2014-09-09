@@ -893,11 +893,11 @@ var makeAJAXLoadFileDetails = function(id) {
           YAHOO.util.Event.removeListener("lockfiledetailslink", "click");
         } else {
           YAHOO.container.menuBar.getItem(5).cfg.setProperty("disabled", false);
-          if (oResults.locked) {
+          /*if (oResults.locked) {
             Dom.get('lockfiledetailslink').innerHTML = 'UnLock';
           } else {
             Dom.get('lockfiledetailslink').innerHTML = 'Lock';
-          }
+          }*/
           if (!Event.getListeners('lockfiledetailslink')) {   // Check first to see if listener already active
             Event.addListener("lockfiledetailslink", "click", adminToggleFilelock);
           }
@@ -969,7 +969,7 @@ var makeAJAXLoadFileDetails = function(id) {
           }
         }
 
-        if (oResults.locked) {
+        /*if (oResults.locked) {
           try {
             Dom.get('lockfiledetailslink').innerHTML = 'UnLock';
           } catch(e) {}
@@ -986,7 +986,7 @@ var makeAJAXLoadFileDetails = function(id) {
           try {
             Dom.get('notifyfiledetailslink').innerHTML = 'Subscribe';
           } catch (e) {}
-        }
+        }*/
 
       } else {
         alert(oResults.error);
