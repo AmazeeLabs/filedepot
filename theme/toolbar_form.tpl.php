@@ -19,7 +19,8 @@
     <input type="hidden" name="newcid" value="">
     <input type="hidden" name="reportmode" value="<?php print $report_option ?>">
     <div class="floatleft" style="padding-top:5px;width:160px;">
-      <select id="multiaction" class="form-select disabled_element" name="multiaction" style="padding:0px;width:100%;" onChange="if (checkMultiAction(this.value)) submit(); postSubmitMultiactionResetIfNeed(this.value);" disabled="disabled"><option value="0">test</option></select>
+      <!-- <select id="multiaction" class="form-select disabled_element" name="multiaction" style="padding:0px;width:100%;" onChange="if (checkMultiAction(this.value)) submit(); postSubmitMultiactionResetIfNeed(this.value);" disabled="disabled"><option value="0">test</option></select> -->
+      <input id="multiaction" type="hidden" name="multiaction" style="padding:0px;width:100%;" />
     </div>
   </form>
 </div>

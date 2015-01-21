@@ -8,8 +8,9 @@
 <div class="listing_record" id="folder_<?php print $subfolder_id ?>_rec_<?php print $fid ?>">
     <div style="padding-right:0px;">
         <div class="floatleft">
-                <input id="chkfile<?php print $fid ?>" type="checkbox" name="chkfile" value="<?php print $fid ?>" onClick="updateCheckedItems(this)">
-                <?php if ($show_favorite) { ?>
+                <!-- <input id="chkfile<?php print $fid ?>" type="checkbox" name="chkfile" value="<?php print $fid ?>" onClick="updateCheckedItems(this)"> -->
+                <input id="chkfile<?php print $fid ?>" type="hidden" name="chkfile" value="<?php print $fid ?>" onClick="updateCheckedItems(this)">
+                <?php if (0 && $show_favorite) { ?>
                     <a href="?id=<?php print $fid ?>" onclick="return false;"><img id="favitem<?php print $fid ?>" class="togglefavorite" src="<?php print $favorite_status_image ?>" TITLE="<?php print $LANG_favorite_status ?>"></a>
                 <?php } ?>
                 <span style="padding-left:<?php print $padding_left ?>px;">

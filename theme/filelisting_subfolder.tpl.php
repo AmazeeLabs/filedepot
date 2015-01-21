@@ -3,13 +3,14 @@
   * @file
   * filelisting_subfolder.tpl.php
   */
-?>  
+?>
 
 <div id="subfolder<?php print $folder_id ?>" class="subfolder listing_record parentfolder<?php print $parent_folder_id ?>">
   <div style="padding-right:20px;">
     <div class="folder_withhover" style="width:100%;">
       <div class="floatleft">
-        <input type="checkbox" name="chkfolder" value="<?php print $folder_id ?>" onclick="toggleCheckedItems(this,'<?php print $folder_files ?>');">
+        <!-- <input type="checkbox" name="chkfolder" value="<?php print $folder_id ?>" onclick="toggleCheckedItems(this,'<?php print $folder_files ?>');"> -->
+        <input type="hidden" name="chkfolder" value="<?php print $folder_id ?>">
         <span id="subfolder_icon<?php print $folder_id ?>" class="icon-folderclosed" style="padding:0px 5px;" onClick="togglefolder(<?php print $folder_id ?>);">&nbsp;</span>
         <span style="padding-left:<?php print $folder_padding_left ?>px;"><a href="#"><img src="<?php print $layout_url ?>/css/images/allfolders-16x16.png"></a></span>
         <span style="padding-left:5px;padding-right:5px;color:#666;"><?php print $folder_number ?></span>

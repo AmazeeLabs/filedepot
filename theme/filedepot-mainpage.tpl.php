@@ -134,25 +134,26 @@
             <input type="hidden" name="tags" value="">
             <table>
               <tr>
-                <td width="50%"><input type="text" size="20" name="query" id="searchquery" class="form-text" style="height:12px;padding:3px 3px 5px 3px;" value="<?php print $search_query ?>" onClick="this.value='';"></td>
-                <td width="50%" style="text-align:right;"><input type="button" id="searchbutton" value="<?php print t('Search') ?>"></td>
+                <!-- <td width="50%"><input type="text" size="20" name="query" id="searchquery" class="form-text" style="height:12px;padding:3px 3px 5px 3px;" value="<?php print $search_query ?>" onClick="this.value='';"></td> -->
+                <input type="hidden" size="20" name="query" id="searchquery" class="form-text" style="height:12px;padding:3px 3px 5px 3px;" value="" onClick="this.value='';">
+                <!-- <td width="50%" style="text-align:right;"><input type="button" id="searchbutton" value="<?php print t('Search') ?>"></td> -->
               </tr>
             </table>
           </form>
         </div>
-        <div class="tagsearchboxcontainer" style="width:10%;padding:5px;">
+        <!-- <div class="tagsearchboxcontainer" style="width:10%;padding:5px;">
           <div><a id="showsearchtags" href="#"><?php echo t('Tags'); ?></a></div>
-        </div>
+        </div> -->
       </div>
     </div>
-    <div class="tagsearchboxcontainer">
+    <!-- <div class="tagsearchboxcontainer">
       <div id="tagspanel" style="display:none;">
         <div class="hd"><?php print t('Search Tags'); ?></div>
         <div id="tagcloud" class="bd tagcloud">
           <?php print $tagcloud ?>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div id="filedepot_sidecol">
       <!-- Leftside Folder Navigation generated onload by page javascript -->
@@ -212,13 +213,13 @@
               <a id="deletefiledetailslink" href="#" TITLE="<?php print t('Delete File'); ?>"><?php print t('Delete'); ?></a>
             </li>
             <li id="lockmenubaritem" class="yuimenubaritem first-of-type">
-              <a id="lockfiledetailslink" href="#" TITLE="<?php print t('Lock File'); ?>"><?php print t('Lock'); ?></a>
+              <!-- <a id="lockfiledetailslink" href="#" TITLE="<?php print t('Lock File'); ?>"><?php print t('Lock'); ?></a> -->
             </li>
             <li id="notifymenubaritem" class="yuimenubaritem first-of-type">
-              <a id="notifyfiledetailslink" href="#" TITLE="<?php print t('Enable email notification for any updates'); ?>"><?php print t('Subscribe'); ?></a>
+              <!-- <a id="notifyfiledetailslink" href="#" TITLE="<?php print t('Enable email notification for any updates'); ?>"><?php print t('Subscribe'); ?></a> -->
             </li>
             <li id="broadcastmenubaritem" class="yuimenubaritem first-of-type">
-              <a id="broadcastnotificationlink" href="#" TITLE="<?php print t('Send out a broadcast email notification'); ?>"><?php print t('Broadcast Notification'); ?></a>
+              <!-- <a id="broadcastnotificationlink" href="#" TITLE="<?php print t('Send out a broadcast email notification'); ?>"><?php print t('Broadcast Notification'); ?></a> -->
             </li>
           </ul>
         </div>
@@ -261,10 +262,10 @@
             <tr style="vertical-align:top;">
               <td><label><?php print t('Version Notes'); ?></label></td>
               <td><textarea rows="3" cols="30" name="version_note" style="width:195px;"></textarea></td>
-              <td><label><?php print t('Tags'); ?></label></td>
-              <td>
+              <!-- <td><label><?php print t('Tags'); ?></label></td> -->
+              <td colspan="2">
                 <div id="tagsfield" style="padding-bottom:15px;">
-                  <input id="editfile_tags" class="form-text" name="tags" type="text" size="30" style="width:210px" />
+                  <input id="editfile_tags" class="form-text" name="tags" type="hidden" size="30" style="width:210px" />
                   <div id="editfile_autocomplete" style="width:210px;"></div>
                 </div>
                 <div id="tagswarning" class="pluginAlert" style="width:180px;display:none;"><?php print t('Folder Perms not set'); ?></div>

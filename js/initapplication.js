@@ -29,7 +29,10 @@ var init_filedepot = function() {
     width: layoutPageWidth, //Width of the outer element
     minHeight: 150, //So it doesn't get too small
     units: [
-    { position: 'left',  width: leftcolwidth, resize: true, body: 'filedepot_sidecol', scroll: true, animate: true, gutter: '0px 25px 15px 0px' },
+    // We do not need the left sidebar for the moment.
+    // When we need it, we also have to activate the showLeftNavigation() and
+    // the renderLeftNavigation() functions in the common.js.
+    //{ position: 'left',  width: leftcolwidth, resize: true, body: 'filedepot_sidecol', scroll: true, animate: true, gutter: '0px 25px 15px 0px' },
     { position: 'center', body: 'filedepot_centercol', gutter: '0px 6px 15px 0px', scroll: true, resize: true }
     ]
   });

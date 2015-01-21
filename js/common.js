@@ -139,6 +139,7 @@ function showAlert(message,autoclose) {
 }
 
 function updateAjaxStatus(message) {
+  return;
   try {
     Dom.get('filedepot_ajaxStatus').innerHTML = '';
     if(message) {
@@ -892,11 +893,11 @@ var makeAJAXLoadFileDetails = function(id) {
           YAHOO.util.Event.removeListener("lockfiledetailslink", "click");
         } else {
           YAHOO.container.menuBar.getItem(5).cfg.setProperty("disabled", false);
-          if (oResults.locked) {
+          /*if (oResults.locked) {
             Dom.get('lockfiledetailslink').innerHTML = 'UnLock';
           } else {
             Dom.get('lockfiledetailslink').innerHTML = 'Lock';
-          }
+          }*/
           if (!Event.getListeners('lockfiledetailslink')) {   // Check first to see if listener already active
             Event.addListener("lockfiledetailslink", "click", adminToggleFilelock);
           }
@@ -968,7 +969,7 @@ var makeAJAXLoadFileDetails = function(id) {
           }
         }
 
-        if (oResults.locked) {
+        /*if (oResults.locked) {
           try {
             Dom.get('lockfiledetailslink').innerHTML = 'UnLock';
           } catch(e) {}
@@ -985,7 +986,7 @@ var makeAJAXLoadFileDetails = function(id) {
           try {
             Dom.get('notifyfiledetailslink').innerHTML = 'Subscribe';
           } catch (e) {}
-        }
+        }*/
 
       } else {
         alert(oResults.error);
@@ -2253,7 +2254,8 @@ function showAddCategoryPanel() {
  * @param oResults string JSON
  */
 function renderLeftNavigation(oResults) {
-
+// We do not need this for the moment.
+return;
   try {
     if (!Event.getListeners('folderoptions_link')) {   // Check first to see if listener already active
       Event.addListener("folderoptions_link","click",togglefolderoptions);
@@ -2371,6 +2373,8 @@ function renderFileListing(oResults) {
 }
 
 YAHOO.filedepot.showLeftNavigation = function() {
+// We do not need this for the moment.
+return;
   /* Generate Left Side Folder Navigation */
   var surl = ajax_post_handler_url + '/getleftnavigation';
   var navcallback = {

@@ -34,8 +34,23 @@ function filedepot_recursiveAccessArray($perms, $id = 0, $level = 1) {
       $id = $filedepot->ogrootfolder;
     }
   }
-  $query = db_query("SELECT cid,pid,name FROM {filedepot_categories} WHERE pid=:pid ORDER BY cid",
-    array(':pid' => $id));
+  else {
+    $show_current = FALSE;
+    if ($id == 0) {
+      ctools_include('object-cache');
+      $cid = ctools_object_cache_get('filedepot', 'folder');
+      $id = filedepot_getTopLevelParent($cid);
+      $show_current = TRUE;
+    }
+  }
+  if (!empty($show_current)) {
+    $query = db_query("SELECT cid,pid,name FROM {filedepot_categories} WHERE cid=:pid ORDER BY cid",
+      array(':pid' => $id));
+  }
+  else {
+    $query = db_query("SELECT cid,pid,name FROM {filedepot_categories} WHERE pid=:pid ORDER BY cid",
+      array(':pid' => $id));
+  }
   while ($A = $query->fetchAssoc()) {
     list($cid, $pid, $name) = array_values($A);
     $indent = ' ';
@@ -104,11 +119,23 @@ function filedepot_recursiveAccessOptions($perms, $selected = '', $id = '0', $le
       $selectlist = '<option value="'.$filedepot->ogrootfolder.'">' . t('Top Level Folder') . '</option>' . LB;
     }
   } else {
+    $show_current = FALSE;
+    if ($id == 0) {
+      ctools_include('object-cache');
+      $cid = ctools_object_cache_get('filedepot', 'folder');
+      $id = filedepot_getTopLevelParent($cid);
+      $show_current = TRUE;
+    }
     if ($addRootOpt AND $level == 1 AND user_access('administer filedepot')) {
       $selectlist = '<option value="0">' . t('Top Level Folder') . '</option>' . LB;
     }
   }
-  $query = db_query("SELECT cid,pid,name FROM {filedepot_categories} WHERE pid=:cid ORDER BY cid", array(':cid' => $id));
+  if (!empty($show_current)) {
+    $query = db_query("SELECT cid,pid,name FROM {filedepot_categories} WHERE cid=:cid", array(':cid' => $id));
+  }
+  else {
+    $query = db_query("SELECT cid,pid,name FROM {filedepot_categories} WHERE pid=:cid ORDER BY cid", array(':cid' => $id));
+  }
   while ($A = $query->fetchAssoc()) {
     list($cid, $pid, $name) = array_values($A);
     $name = filter_xss($name);
